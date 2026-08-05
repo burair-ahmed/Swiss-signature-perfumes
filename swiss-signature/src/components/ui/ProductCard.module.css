@@ -1,0 +1,226 @@
+.card {
+  display: block;
+  background: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  transition: all 0.4s var(--ease-out);
+  animation: fadeInUp 0.6s var(--ease-out) forwards;
+  opacity: 0;
+  position: relative;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(201, 168, 76, 0.12);
+}
+
+/* Badge */
+.badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+}
+
+.badgeGold {
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+  color: var(--bg-primary);
+}
+
+.badgeNew {
+  background: linear-gradient(135deg, #2D8B4E, #1E6B3A);
+  color: white;
+}
+
+/* Image */
+.imageWrap {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(145deg, var(--bg-tertiary) 0%, #151515 50%, var(--bg-secondary) 100%);
+  transition: transform 0.6s var(--ease-out);
+}
+
+.card:hover .imagePlaceholder {
+  transform: scale(1.03);
+}
+
+.imageInitial {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  opacity: 0.4;
+  line-height: 1;
+}
+
+.imageSubtext {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
+/* Hover Actions */
+.actions {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: all 0.3s var(--ease-out);
+}
+
+.card:hover .actions {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-out);
+}
+
+.actionBtn:hover {
+  background: var(--gold-primary);
+  color: var(--bg-primary);
+  transform: scale(1.1);
+}
+
+/* Info */
+.info {
+  padding: 1.25rem;
+}
+
+.category {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.375rem;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  transition: color 0.3s;
+}
+
+.card:hover .name {
+  color: var(--gold-primary);
+}
+
+.tagline {
+  font-family: var(--font-accent);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.priceRow {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 0.5rem;
+}
+
+.price {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.originalPrice {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+/* Rating */
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stars {
+  display: flex;
+  gap: 1px;
+}
+
+.starFilled {
+  color: var(--gold-primary);
+  font-size: 0.8125rem;
+}
+
+.starEmpty {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.reviewCount {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 480px) {
+  .info {
+    padding: 1rem;
+  }
+  .name {
+    font-size: 1rem;
+  }
+  .imageInitial {
+    font-size: 3rem;
+  }
+}

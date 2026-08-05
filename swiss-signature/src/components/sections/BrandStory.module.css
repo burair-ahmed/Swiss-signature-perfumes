@@ -1,0 +1,134 @@
+.brandStory {
+  background: var(--bg-secondary);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.visualCol {
+  position: relative;
+}
+
+.visualCard {
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, #151515 50%, var(--bg-primary) 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.visualOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(201, 168, 76, 0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.emblemWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1;
+}
+
+.brandLogoImg {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold-primary);
+  box-shadow: 0 0 40px rgba(201, 168, 76, 0.3);
+}
+
+.emblemSub {
+  font-family: var(--font-accent);
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  color: var(--text-secondary);
+}
+
+.floatingBadge {
+  position: absolute;
+  bottom: -1.5rem;
+  right: -1.5rem;
+  background: rgba(17, 17, 17, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  box-shadow: var(--shadow-gold);
+}
+
+.goldIcon {
+  color: var(--gold-primary);
+}
+
+.badgeTitle {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.badgeSub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.pillarIcon {
+  color: var(--gold-primary);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.pillarTitle {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.pillarDesc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .floatingBadge {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
