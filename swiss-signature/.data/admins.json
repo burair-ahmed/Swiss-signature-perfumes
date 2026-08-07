@@ -1,0 +1,10 @@
+[
+  {
+    "id": "usr_superadmin",
+    "name": "Project Owner",
+    "email": "admin@swiss-signature.com",
+    "role": "super_admin",
+    "passwordHash": "admin123",
+    "createdAt": "2026-08-07T07:21:01.054Z"
+  }
+]

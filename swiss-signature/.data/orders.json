@@ -1,0 +1,59 @@
+[
+  {
+    "id": "SS-891042",
+    "createdAt": "2026-08-05T07:21:01.054Z",
+    "customer": {
+      "firstName": "Tariq",
+      "lastName": "Mahmood",
+      "email": "tariq.m@example.com",
+      "phone": "+92 300 1234567",
+      "address": "Plot 45-C, Khayaban-e-Shahbaz, DHA Phase 6",
+      "city": "Karachi",
+      "country": "Pakistan",
+      "postalCode": "75500"
+    },
+    "items": [
+      {
+        "productId": "swiss-sauvage",
+        "name": "Swiss Sauvage",
+        "price": 2750,
+        "quantity": 1,
+        "selectedVolume": "100ml"
+      }
+    ],
+    "subtotal": 2750,
+    "shippingFee": 250,
+    "total": 3000,
+    "paymentMethod": "cod",
+    "status": "Pending",
+    "notes": "Please call before delivery."
+  },
+  {
+    "id": "SS-741920",
+    "createdAt": "2026-08-02T07:21:01.054Z",
+    "customer": {
+      "firstName": "Ayesha",
+      "lastName": "Khan",
+      "email": "ayesha.k@example.com",
+      "phone": "+92 321 9876543",
+      "address": "House 12, Street 4, Sector F-7/2",
+      "city": "Islamabad",
+      "country": "Pakistan",
+      "postalCode": "44000"
+    },
+    "items": [
+      {
+        "productId": "swiss-coco-mademoiselle",
+        "name": "Swiss Coco Mademoiselle",
+        "price": 2350,
+        "quantity": 2,
+        "selectedVolume": "50ml"
+      }
+    ],
+    "subtotal": 4700,
+    "shippingFee": 350,
+    "total": 5050,
+    "paymentMethod": "card",
+    "status": "Delivered"
+  }
+]

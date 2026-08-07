@@ -17,7 +17,9 @@ const companyLinks = [
   { href: '/about', label: 'Our Story' },
   { href: '/collections', label: 'Collections' },
   { href: '/contact', label: 'Contact Us' },
+  { href: '/admin', label: 'Admin Portal' },
 ];
+
 
 export function Footer() {
   return (
