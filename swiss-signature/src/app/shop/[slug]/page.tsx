@@ -2,11 +2,12 @@
 
 import { useState, use } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getProductBySlug, products } from '@/lib/data';
+import { getProductBySlug, products, reviews } from '@/lib/data';
 import { useCartStore } from '@/store/cart-store';
 import { ProductCard } from '@/components/ui/ProductCard';
-import { ShoppingBag, Heart, Shield, Sparkles, Truck, RotateCcw, Star } from 'lucide-react';
+import { ShoppingBag, Heart, Shield, Sparkles, Truck, RotateCcw, Star, CheckCircle, Package } from 'lucide-react';
 import toast from 'react-hot-toast';
 import styles from './ProductDetail.module.css';
 
@@ -22,14 +23,14 @@ export default function ProductDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const [selectedVolume, setSelectedVolume] = useState<string>(product.volume[0]);
+  const [selectedVolume] = useState<string>('50ml');
   const [quantity, setQuantity] = useState<number>(1);
   const [activeTab, setActiveTab] = useState<'description' | 'notes' | 'reviews'>('description');
   const { addItem } = useCartStore();
 
   const handleAddToCart = () => {
-    addItem(product, selectedVolume, quantity);
-    toast.success(`${quantity}x ${product.name} (${selectedVolume}) added to cart`);
+    addItem(product, '50ml', quantity);
+    toast.success(`${quantity}x ${product.name} (50ml) added to cart`);
   };
 
   const relatedProducts = products
@@ -53,10 +54,21 @@ export default function ProductDetailPage({ params }: PageProps) {
           {/* Product Image Gallery */}
           <div className={styles.gallery}>
             <div className={styles.mainImageWrap}>
-              <div className={styles.imagePlaceholder}>
-                <span className={styles.largeInitial}>{product.name.charAt(0)}</span>
-                <span className={styles.familyTag}>{product.fragranceFamily}</span>
-              </div>
+              {product.image ? (
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className={styles.mainProductImg}
+                  priority
+                />
+              ) : (
+                <div className={styles.imagePlaceholder}>
+                  <span className={styles.largeInitial}>{product.name.charAt(0)}</span>
+                  <span className={styles.familyTag}>{product.fragranceFamily}</span>
+                </div>
+              )}
               {product.badge && (
                 <span className={`${styles.badge} ${product.badge === 'new' ? styles.badgeNew : styles.badgeGold}`}>
                   {product.badge === 'bestseller' ? 'Best Seller' : product.badge === 'new' ? 'New Release' : 'Limited Edition'}
@@ -79,35 +91,39 @@ export default function ProductDetailPage({ params }: PageProps) {
                 ))}
               </div>
               <span className={styles.ratingScore}>{product.rating}</span>
-              <span className={styles.reviewLink}>({product.reviewCount} reviews)</span>
+              <span className={styles.reviewLink} onClick={() => setActiveTab('reviews')} style={{ cursor: 'pointer' }}>
+                ({product.reviewCount} reviews)
+              </span>
             </div>
 
             {/* Price */}
             <div className={styles.priceRow}>
-              <span className={styles.price}>${product.price}</span>
+              <span className={styles.price}>PKR {product.price.toLocaleString()}</span>
               {product.originalPrice && (
-                <span className={styles.originalPrice}>${product.originalPrice}</span>
+                <span className={styles.originalPrice}>PKR {product.originalPrice.toLocaleString()}</span>
               )}
-              <span className={styles.taxNote}>Taxes included. Free Swiss shipping.</span>
+              <span className={styles.taxNote}>Taxes included. Cash on Delivery (COD) supported.</span>
             </div>
 
             <p className={styles.description}>{product.description}</p>
 
             <hr className={styles.divider} />
 
-            {/* Volume Selector */}
+            {/* Volume Display - Only 50ml */}
             <div className={styles.selectorGroup}>
-              <label className={styles.selectorLabel}>Select Flacon Size:</label>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <label className={styles.selectorLabel}>Flacon Size:</label>
+                <span style={{ fontSize: '0.8rem', color: 'var(--gold)', fontWeight: 600 }}>Standard Edition</span>
+              </div>
               <div className={styles.volumeOptions}>
-                {product.volume.map((vol) => (
-                  <button
-                    key={vol}
-                    className={`${styles.volumeBtn} ${selectedVolume === vol ? styles.volumeActive : ''}`}
-                    onClick={() => setSelectedVolume(vol)}
-                  >
-                    {vol}
-                  </button>
-                ))}
+                <button
+                  type="button"
+                  className={`${styles.volumeBtn} ${styles.volumeActive}`}
+                  style={{ cursor: 'default' }}
+                >
+                  <Package size={16} style={{ display: 'inline', marginRight: '6px' }} />
+                  50ml Extrait de Parfum
+                </button>
               </div>
             </div>
 
@@ -117,6 +133,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 <button
                   className={styles.qtyBtn}
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  aria-label="Decrease quantity"
                 >
                   -
                 </button>
@@ -124,6 +141,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 <button
                   className={styles.qtyBtn}
                   onClick={() => setQuantity((q) => q + 1)}
+                  aria-label="Increase quantity"
                 >
                   +
                 </button>
@@ -131,10 +149,10 @@ export default function ProductDetailPage({ params }: PageProps) {
 
               <button className="btn btn-primary btn-lg" style={{ flex: 1 }} onClick={handleAddToCart} id="add-to-cart-btn">
                 <ShoppingBag size={18} />
-                Add to Cart — ${(product.price * quantity).toFixed(2)}
+                Add to Cart — PKR {(product.price * quantity).toLocaleString()}
               </button>
 
-              <button className={styles.wishlistBtn} aria-label="Add to wishlist">
+              <button className={styles.wishlistBtn} aria-label="Add to wishlist" onClick={() => toast.success('Added to wishlist')}>
                 <Heart size={20} />
               </button>
             </div>
@@ -143,7 +161,7 @@ export default function ProductDetailPage({ params }: PageProps) {
             <div className={styles.trustBadges}>
               <div className={styles.trustItem}>
                 <Truck size={18} className={styles.trustIcon} />
-                <span>Express Worldwide Shipping</span>
+                <span>Cash on Delivery Across Pakistan</span>
               </div>
               <div className={styles.trustItem}>
                 <Shield size={18} className={styles.trustIcon} />
@@ -151,7 +169,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               </div>
               <div className={styles.trustItem}>
                 <RotateCcw size={18} className={styles.trustIcon} />
-                <span>Complimentary Sample Included</span>
+                <span>50ml Luxury Crystal Flacon</span>
               </div>
             </div>
           </div>
@@ -164,7 +182,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               className={`${styles.tabTitleBtn} ${activeTab === 'description' ? styles.tabTitleActive : ''}`}
               onClick={() => setActiveTab('description')}
             >
-              Story & Ingredients
+              Story & Scent Profile
             </button>
             <button
               className={`${styles.tabTitleBtn} ${activeTab === 'notes' ? styles.tabTitleActive : ''}`}
@@ -229,9 +247,38 @@ export default function ProductDetailPage({ params }: PageProps) {
                 <div className={styles.reviewSummary}>
                   <span className={styles.bigRating}>{product.rating}</span>
                   <div>
-                    <p className={styles.summaryTitle}>Exceptional Rating</p>
-                    <p className={styles.summarySub}>Based on {product.reviewCount} verified client evaluations</p>
+                    <p className={styles.summaryTitle}>Exceptional Customer Rating</p>
+                    <p className={styles.summarySub}>Based on {product.reviewCount} verified client evaluations across Pakistan</p>
                   </div>
+                </div>
+
+                {/* Pakistani Client Reviews List */}
+                <div className={styles.reviewsList}>
+                  {reviews.map((rev) => (
+                    <div key={rev.id} className={styles.reviewItemCard}>
+                      <div className={styles.reviewItemHeader}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                          <div className={styles.reviewerAvatar}>
+                            {rev.name.charAt(0)}
+                          </div>
+                          <div>
+                            <h4 className={styles.reviewerName}>{rev.name}</h4>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', marginTop: '2px' }}>
+                              <CheckCircle size={14} className="text-gold" />
+                              <span style={{ fontSize: '0.75rem', color: 'var(--gold)' }}>Verified Pakistani Buyer</span>
+                            </div>
+                          </div>
+                        </div>
+                        <span className={styles.reviewDate}>{rev.date}</span>
+                      </div>
+                      <div className={styles.stars} style={{ margin: '0.75rem 0' }}>
+                        {[1, 2, 3, 4, 5].map((s) => (
+                          <Star key={s} size={14} className={s <= rev.rating ? styles.starFilled : styles.starEmpty} fill="currentColor" />
+                        ))}
+                      </div>
+                      <p className={styles.reviewComment}>&ldquo;{rev.text}&rdquo;</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
@@ -256,3 +303,4 @@ export default function ProductDetailPage({ params }: PageProps) {
     </div>
   );
 }
+

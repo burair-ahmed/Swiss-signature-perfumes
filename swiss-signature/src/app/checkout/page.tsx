@@ -2,17 +2,18 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useCartStore } from '@/store/cart-store';
 import { calculateShippingFee } from '@/lib/shipping';
-import { CreditCard, Lock, CheckCircle2, Building2, Truck, Banknote, ShieldCheck } from 'lucide-react';
+import { Lock, CheckCircle2, Truck, Banknote, ShieldCheck, PhoneCall, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 import styles from './CheckoutPage.module.css';
 
 export default function CheckoutPage() {
   const { items, getSubtotal, clearCart } = useCartStore();
   const [step, setStep] = useState<'shipping' | 'payment' | 'confirmation'>('shipping');
-  const [paymentMethod, setPaymentMethod] = useState<'cod' | 'card' | 'paypal'>('cod');
   const [isGuest, setIsGuest] = useState(true);
+  const paymentMethod = 'cod';
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [createdOrderRef, setCreatedOrderRef] = useState<string>('');
 
@@ -26,9 +27,6 @@ export default function CheckoutPage() {
     city: 'Karachi',
     country: 'Pakistan',
     postalCode: '75500',
-    cardNumber: '',
-    expDate: '',
-    cvv: '',
     notes: '',
   });
 
@@ -61,7 +59,7 @@ export default function CheckoutPage() {
         name: item.product.name,
         price: item.product.price,
         quantity: item.quantity,
-        selectedVolume: item.selectedVolume,
+        selectedVolume: item.selectedVolume || '50ml',
         image: item.product.image,
       }));
 
@@ -77,7 +75,7 @@ export default function CheckoutPage() {
           country: formData.country,
           postalCode: formData.postalCode,
         },
-        paymentMethod,
+        paymentMethod: 'cod',
         notes: formData.notes,
       };
 
@@ -94,11 +92,7 @@ export default function CheckoutPage() {
       }
 
       setCreatedOrderRef(data.order.id);
-      toast.success(
-        paymentMethod === 'cod' 
-          ? 'Order placed successfully! Cash will be collected upon delivery.' 
-          : 'Payment authorized & order placed successfully!'
-      );
+      toast.success('Order placed successfully! Cash will be collected upon delivery.');
       setStep('confirmation');
       clearCart();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -119,24 +113,18 @@ export default function CheckoutPage() {
           </div>
           <span className="text-caption text-gold" style={{ marginTop: '1.5rem' }}>Order Confirmed</span>
           <h1 className="text-display-md" style={{ marginTop: '0.25rem' }}>
-            Thank You For Your Purchase
+            Thank You For Your Order
           </h1>
           <p className={styles.orderNumber}>Order Reference: <strong>#{createdOrderRef || 'SS-891024'}</strong></p>
           
-          <div style={{ background: 'rgba(212, 175, 55, 0.08)', border: '1px solid rgba(212, 175, 55, 0.3)', padding: '1.25rem 1.5rem', borderRadius: '8px', margin: '1.5rem 0', maxWidth: '540px', textAlign: 'center' }}>
-            {paymentMethod === 'cod' ? (
-              <p style={{ margin: 0, color: 'var(--text-primary)', fontSize: '0.95rem' }}>
-                <strong style={{ color: 'var(--gold)' }}>Cash on Delivery Selected:</strong> Please keep <strong>PKR {total.toLocaleString()}</strong> cash ready upon courier delivery to <strong>{formData.address}, {formData.city}</strong>.
-              </p>
-            ) : (
-              <p style={{ margin: 0, color: 'var(--text-primary)', fontSize: '0.95rem' }}>
-                Your payment of <strong>PKR {total.toLocaleString()}</strong> has been authorized. Order details dispatched to <strong>{formData.email}</strong>.
-              </p>
-            )}
+          <div style={{ background: 'rgba(212, 175, 55, 0.08)', border: '1px solid rgba(212, 175, 55, 0.3)', padding: '1.25rem 1.5rem', borderRadius: '8px', margin: '1.5rem 0', maxWidth: '560px', textAlign: 'center' }}>
+            <p style={{ margin: 0, color: 'var(--text-primary)', fontSize: '0.95rem', lineHeight: '1.6' }}>
+              <strong style={{ color: 'var(--gold)' }}>Cash on Delivery (COD) Confirmed:</strong> Please keep <strong style={{ color: 'var(--gold)' }}>PKR {total.toLocaleString()}</strong> ready in cash for the courier rider upon delivery to <strong>{formData.address}, {formData.city}</strong>.
+            </p>
           </div>
 
           <p className={styles.confirmationText}>
-            A confirmation receipt has been sent to <strong>{formData.email || 'your email'}</strong>. Your order has been dispatched to our fulfillment team and logged in Admin Orders.
+            A confirmation receipt and tracking updates will be dispatched to <strong>{formData.phone}</strong> and <strong>{formData.email || 'your email'}</strong>.
           </p>
 
           <div className={styles.confirmationActions}>
@@ -320,118 +308,41 @@ export default function CheckoutPage() {
                 </div>
 
                 <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%', marginTop: '1rem' }}>
-                  Proceed to Payment Options
+                  Proceed to Payment (COD)
                 </button>
               </form>
             ) : (
               <form onSubmit={handleCompleteOrder} className={styles.formSection}>
-                <h3 className={styles.sectionTitle}>Select Payment Gateway</h3>
+                <h3 className={styles.sectionTitle}>Payment Method (COD Only)</h3>
 
                 <div className={styles.paymentMethods}>
-                  {/* Cash on Delivery Option */}
-                  <label className={`${styles.methodCard} ${paymentMethod === 'cod' ? styles.methodActive : ''}`}>
+                  {/* Cash on Delivery Only */}
+                  <label className={`${styles.methodCard} ${styles.methodActive}`} style={{ cursor: 'default' }}>
                     <input
                       type="radio"
                       name="payment"
-                      checked={paymentMethod === 'cod'}
-                      onChange={() => setPaymentMethod('cod')}
+                      checked={true}
+                      readOnly
                     />
-                    <Banknote size={22} className="text-gold" />
+                    <Banknote size={24} className="text-gold" />
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <span style={{ fontWeight: 600 }}>Cash on Delivery (COD)</span>
-                      <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Pay cash to courier upon delivery at your doorstep</span>
-                    </div>
-                  </label>
-
-                  {/* Credit Card Option */}
-                  <label className={`${styles.methodCard} ${paymentMethod === 'card' ? styles.methodActive : ''}`}>
-                    <input
-                      type="radio"
-                      name="payment"
-                      checked={paymentMethod === 'card'}
-                      onChange={() => setPaymentMethod('card')}
-                    />
-                    <CreditCard size={22} className="text-gold" />
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <span style={{ fontWeight: 600 }}>Credit / Debit Card (Stripe Integrated)</span>
-                      <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Visa, MasterCard, UnionPay</span>
-                    </div>
-                  </label>
-
-                  {/* PayPal Option */}
-                  <label className={`${styles.methodCard} ${paymentMethod === 'paypal' ? styles.methodActive : ''}`}>
-                    <input
-                      type="radio"
-                      name="payment"
-                      checked={paymentMethod === 'paypal'}
-                      onChange={() => setPaymentMethod('paypal')}
-                    />
-                    <Building2 size={22} className="text-gold" />
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <span style={{ fontWeight: 600 }}>PayPal Express Checkout</span>
-                      <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Fast & secure PayPal authorization</span>
+                      <span style={{ fontWeight: 600, fontSize: '1rem' }}>Cash on Delivery (COD)</span>
+                      <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Pay cash to courier upon delivery at your doorstep</span>
                     </div>
                   </label>
                 </div>
 
-                {paymentMethod === 'cod' && (
-                  <div style={{ background: 'rgba(212, 175, 55, 0.05)', border: '1px dashed rgba(212, 175, 55, 0.3)', padding: '1.25rem', borderRadius: '8px', margin: '1rem 0' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--gold)', fontWeight: 600 }}>
-                      <ShieldCheck size={18} />
-                      <span>Cash on Delivery Terms</span>
-                    </div>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-                      Order total of <strong>PKR {total.toLocaleString()}</strong> will be collected in cash by our dispatch rider upon parcel handoff. Please verify your phone number (<strong>{formData.phone}</strong>) for delivery SMS alerts.
-                    </p>
+                <div style={{ background: 'rgba(212, 175, 55, 0.05)', border: '1px dashed rgba(212, 175, 55, 0.4)', padding: '1.5rem', borderRadius: '8px', margin: '1.25rem 0' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', color: 'var(--gold)', fontWeight: 600 }}>
+                    <ShieldCheck size={20} />
+                    <span>Cash on Delivery Dispatch Guarantee</span>
                   </div>
-                )}
-
-                {paymentMethod === 'card' && (
-                  <div className={styles.cardDetailsBox}>
-                    <div className={styles.formGroup}>
-                      <label className="input-label" htmlFor="cardNumber">Card Number</label>
-                      <input
-                        type="text"
-                        id="cardNumber"
-                        name="cardNumber"
-                        value={formData.cardNumber}
-                        onChange={handleChange}
-                        className="input"
-                        placeholder="4532 •••• •••• 8910"
-                        required
-                      />
-                    </div>
-
-                    <div className={styles.formRow}>
-                      <div className={styles.formGroup}>
-                        <label className="input-label" htmlFor="expDate">Expiry Date</label>
-                        <input
-                          type="text"
-                          id="expDate"
-                          name="expDate"
-                          value={formData.expDate}
-                          onChange={handleChange}
-                          className="input"
-                          placeholder="MM/YY"
-                          required
-                        />
-                      </div>
-                      <div className={styles.formGroup}>
-                        <label className="input-label" htmlFor="cvv">Security Code (CVV)</label>
-                        <input
-                          type="text"
-                          id="cvv"
-                          name="cvv"
-                          value={formData.cvv}
-                          onChange={handleChange}
-                          className="input"
-                          placeholder="123"
-                          required
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )}
+                  <ul style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0, paddingLeft: '1.25rem', lineHeight: 1.6 }}>
+                    <li>Order total of <strong>PKR {total.toLocaleString()}</strong> will be collected in cash upon courier parcel arrival.</li>
+                    <li>Delivery address: <strong>{formData.address}, {formData.city}, Pakistan</strong>.</li>
+                    <li>Tracking SMS & dispatch confirmation sent to <strong>{formData.phone}</strong>.</li>
+                  </ul>
+                </div>
 
                 <div className={styles.buttonGroup}>
                   <button type="button" className="btn btn-secondary" onClick={() => setStep('shipping')} disabled={isSubmitting}>
@@ -440,10 +351,8 @@ export default function CheckoutPage() {
                   <button type="submit" className="btn btn-primary btn-lg" style={{ flex: 1 }} disabled={isSubmitting}>
                     <Lock size={16} />
                     {isSubmitting 
-                      ? 'Processing Order...' 
-                      : paymentMethod === 'cod' 
-                        ? `Place COD Order — PKR ${total.toLocaleString()}`
-                        : `Complete Order — PKR ${total.toLocaleString()}`
+                      ? 'Confirming Order...' 
+                      : `Confirm COD Order — PKR ${total.toLocaleString()}`
                     }
                   </button>
                 </div>
@@ -458,9 +367,14 @@ export default function CheckoutPage() {
 
               <div className={styles.summaryItems}>
                 {items.map((item) => (
-                  <div key={`${item.product.id}-${item.selectedVolume}`} className={styles.summaryItem}>
-                    <div className={styles.summaryItemName}>
-                      <span>{item.product.name} ({item.selectedVolume})</span>
+                  <div key={`${item.product.id}-${item.selectedVolume}`} className={styles.summaryItem} style={{ alignItems: 'center', gap: '0.75rem' }}>
+                    {item.product.image && (
+                      <div style={{ width: 44, height: 44, position: 'relative', borderRadius: 4, overflow: 'hidden', background: '#111', flexShrink: 0 }}>
+                        <Image src={item.product.image} alt={item.product.name} fill style={{ objectFit: 'contain' }} />
+                      </div>
+                    )}
+                    <div className={styles.summaryItemName} style={{ flex: 1 }}>
+                      <span>{item.product.name} (50ml)</span>
                       <span className={styles.qtyBadge}>x{item.quantity}</span>
                     </div>
                     <span>PKR {(item.product.price * item.quantity).toLocaleString()}</span>

@@ -10,17 +10,17 @@ export default function AccountPage() {
   const mockOrders = [
     {
       id: 'SS-849201',
-      date: '2026-01-14',
-      status: 'Delivered',
-      total: 348.00,
-      items: ['Alpine Glacier (50ml)'],
+      date: '2026-03-10',
+      status: 'Delivered (COD)',
+      total: 2750,
+      items: ['Swiss Sauvage (50ml)'],
     },
     {
       id: 'SS-710293',
-      date: '2025-11-20',
-      status: 'Delivered',
-      total: 399.00,
-      items: ['The Signature Collection'],
+      date: '2026-02-18',
+      status: 'Delivered (COD)',
+      total: 4749,
+      items: ['Swiss Coco Mademoiselle (50ml)', 'Swiss J. Janan (50ml)'],
     },
   ];
 
@@ -30,11 +30,11 @@ export default function AccountPage() {
         {/* Profile Header */}
         <div className={styles.profileHeader}>
           <div className={styles.avatarCircle}>
-            <span>AH</span>
+            <span>HK</span>
           </div>
           <div>
-            <h1 className="text-display-md">Lord Alexander Hamilton</h1>
-            <p className={styles.memberTag}>Swiss Signature VIP Member — Zurich</p>
+            <h1 className="text-display-md">Hamza Khan</h1>
+            <p className={styles.memberTag}>Swiss Signature VIP Member — Karachi, Pakistan</p>
           </div>
         </div>
 
@@ -73,7 +73,7 @@ export default function AccountPage() {
           <div className={styles.contentCol}>
             {activeTab === 'orders' && (
               <div className={styles.card}>
-                <h3 className={styles.cardTitle}>Your Orders</h3>
+                <h3 className={styles.cardTitle}>Your Orders (Cash on Delivery)</h3>
 
                 <div className={styles.ordersList}>
                   {mockOrders.map((order) => (
@@ -87,7 +87,7 @@ export default function AccountPage() {
                       </div>
                       <div className={styles.orderBody}>
                         <p className={styles.itemsText}>{order.items.join(', ')}</p>
-                        <span className={styles.orderPrice}>${order.total.toFixed(2)}</span>
+                        <span className={styles.orderPrice}>PKR {order.total.toLocaleString()}</span>
                       </div>
                     </div>
                   ))}
@@ -109,18 +109,16 @@ export default function AccountPage() {
                 <form className={styles.profileForm} onSubmit={(e) => e.preventDefault()}>
                   <div className={styles.formGroup}>
                     <label className="input-label" htmlFor="acc-name">Full Name</label>
-                    <input type="text" id="acc-name" className="input" defaultValue="Lord Alexander Hamilton" />
+                    <input type="text" id="acc-name" className="input" defaultValue="Hamza Khan" />
                   </div>
                   <div className={styles.formGroup}>
                     <label className="input-label" htmlFor="acc-email">Email Address</label>
-                    <input type="email" id="acc-email" className="input" defaultValue="alexander@hamilton.ch" />
+                    <input type="email" id="acc-email" className="input" defaultValue="hamza.khan@gmail.com" />
                   </div>
                   <div className={styles.formGroup}>
                     <label className="input-label" htmlFor="acc-currency">Preferred Currency</label>
-                    <select id="acc-currency" className="input" defaultValue="USD">
-                      <option value="USD">USD ($)</option>
-                      <option value="CHF">CHF (Fr.)</option>
-                      <option value="EUR">EUR (€)</option>
+                    <select id="acc-currency" className="input" defaultValue="PKR">
+                      <option value="PKR">PKR (Pakistani Rupee)</option>
                     </select>
                   </div>
 
@@ -136,3 +134,4 @@ export default function AccountPage() {
     </div>
   );
 }
+

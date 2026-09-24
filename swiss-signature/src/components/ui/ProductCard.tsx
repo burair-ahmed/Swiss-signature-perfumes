@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { ShoppingBag, Heart, Eye } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { useCartStore } from '@/store/cart-store';
@@ -18,8 +19,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    addItem(product, product.volume[0]);
-    toast.success(`${product.name} added to cart`);
+    addItem(product, product.volume[0] || '50ml');
+    toast.success(`${product.name} (50ml) added to cart`);
   };
 
   const badgeLabel = product.badge === 'bestseller' ? 'Best Seller' :
@@ -42,10 +43,21 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
 
       {/* Image */}
       <div className={styles.imageWrap}>
-        <div className={styles.imagePlaceholder}>
-          <span className={styles.imageInitial}>{product.name.charAt(0)}</span>
-          <span className={styles.imageSubtext}>{product.fragranceFamily}</span>
-        </div>
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className={styles.productImg}
+            priority={index < 4}
+          />
+        ) : (
+          <div className={styles.imagePlaceholder}>
+            <span className={styles.imageInitial}>{product.name.charAt(0)}</span>
+            <span className={styles.imageSubtext}>{product.fragranceFamily}</span>
+          </div>
+        )}
 
         {/* Hover Actions */}
         <div className={styles.actions}>
@@ -63,14 +75,14 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
 
       {/* Info */}
       <div className={styles.info}>
-        <p className={styles.category}>{product.fragranceFamily}</p>
+        <p className={styles.category}>{product.fragranceFamily} • 50ml</p>
         <h3 className={styles.name}>{product.name}</h3>
         <p className={styles.tagline}>{product.tagline}</p>
 
         <div className={styles.priceRow}>
-          <span className={styles.price}>${product.price}</span>
+          <span className={styles.price}>PKR {product.price.toLocaleString()}</span>
           {product.originalPrice && (
-            <span className={styles.originalPrice}>${product.originalPrice}</span>
+            <span className={styles.originalPrice}>PKR {product.originalPrice.toLocaleString()}</span>
           )}
         </div>
 
@@ -89,3 +101,4 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
     </Link>
   );
 }
+

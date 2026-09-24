@@ -39,12 +39,22 @@
 }
 
 .mainImageWrap {
-  aspect-ratio: 4 / 5;
-  background: var(--bg-secondary);
+  aspect-ratio: 1 / 1;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainProductImg {
+  object-fit: contain !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 1.5rem;
 }
 
 .imagePlaceholder {
@@ -404,6 +414,63 @@
   background: var(--bg-secondary);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 2rem;
+}
+
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.reviewItemCard {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.reviewItemCard:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+}
+
+.reviewItemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reviewerAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
+  color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.reviewerName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.reviewDate {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.reviewComment {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
 }
 
 .bigRating {

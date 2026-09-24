@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { X, Plus, Minus, Trash2, ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/store/cart-store';
 import styles from './CartSidebar.module.css';
@@ -49,14 +50,26 @@ export function CartSidebar() {
               {items.map(item => (
                 <div key={`${item.product.id}-${item.selectedVolume}`} className={styles.item}>
                   <div className={styles.itemImage}>
-                    <div className={styles.imagePlaceholder}>
-                      {item.product.name.charAt(0)}
-                    </div>
+                    {item.product.image ? (
+                      <div style={{ width: '100%', height: '100%', position: 'relative', background: '#111' }}>
+                        <Image
+                          src={item.product.image}
+                          alt={item.product.name}
+                          fill
+                          sizes="80px"
+                          style={{ objectFit: 'contain', padding: '4px' }}
+                        />
+                      </div>
+                    ) : (
+                      <div className={styles.imagePlaceholder}>
+                        {item.product.name.charAt(0)}
+                      </div>
+                    )}
                   </div>
                   <div className={styles.itemInfo}>
                     <h3 className={styles.itemName}>{item.product.name}</h3>
-                    <p className={styles.itemVolume}>{item.selectedVolume}</p>
-                    <p className={styles.itemPrice}>${item.product.price}</p>
+                    <p className={styles.itemVolume}>50ml Extrait</p>
+                    <p className={styles.itemPrice}>PKR {item.product.price.toLocaleString()}</p>
                     <div className={styles.itemActions}>
                       <div className={styles.quantityControl}>
                         <button
@@ -91,11 +104,11 @@ export function CartSidebar() {
             <div className={styles.footer}>
               <div className={styles.subtotalRow}>
                 <span>Subtotal</span>
-                <span className={styles.subtotalAmount}>${subtotal.toFixed(2)}</span>
+                <span className={styles.subtotalAmount}>PKR {subtotal.toLocaleString()}</span>
               </div>
-              <p className={styles.shippingNote}>Shipping & taxes calculated at checkout</p>
+              <p className={styles.shippingNote}>Shipping & Cash on Delivery calculated at checkout</p>
               <Link href="/checkout" className="btn btn-primary btn-lg" onClick={closeCart} style={{ width: '100%' }}>
-                Checkout — ${subtotal.toFixed(2)}
+                Checkout (COD) — PKR {subtotal.toLocaleString()}
               </Link>
               <Link href="/cart" className="btn btn-secondary" onClick={closeCart} style={{ width: '100%', marginTop: '0.5rem' }}>
                 View Cart
@@ -107,3 +120,4 @@ export function CartSidebar() {
     </>
   );
 }
+

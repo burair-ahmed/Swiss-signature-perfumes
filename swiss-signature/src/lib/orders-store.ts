@@ -45,7 +45,7 @@ const SAMPLE_ORDERS: Order[] = [
         name: 'Swiss Sauvage',
         price: 2750,
         quantity: 1,
-        selectedVolume: '100ml',
+        selectedVolume: '50ml',
       },
     ],
     subtotal: 2750,
@@ -80,7 +80,7 @@ const SAMPLE_ORDERS: Order[] = [
     subtotal: 4700,
     shippingFee: 350,
     total: 5050,
-    paymentMethod: 'card',
+    paymentMethod: 'cod',
     status: 'Delivered',
   },
 ];
