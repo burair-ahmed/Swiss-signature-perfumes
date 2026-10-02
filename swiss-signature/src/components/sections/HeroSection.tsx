@@ -86,7 +86,7 @@ export function HeroSection() {
           {/* Stats */}
           <div className={styles.miniStats}>
             <div className={styles.miniStat}>
-              <span className={styles.miniStatValue}>9+</span>
+              <span className={styles.miniStatValue}>100+</span>
               <span className={styles.miniStatLabel}>Signature Scents</span>
             </div>
             <div className={styles.miniStatDivider} />

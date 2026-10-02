@@ -370,7 +370,7 @@ export default function CheckoutPage() {
                   <div key={`${item.product.id}-${item.selectedVolume}`} className={styles.summaryItem} style={{ alignItems: 'center', gap: '0.75rem' }}>
                     {item.product.image && (
                       <div style={{ width: 44, height: 44, position: 'relative', borderRadius: 4, overflow: 'hidden', background: '#111', flexShrink: 0 }}>
-                        <Image src={item.product.image} alt={item.product.name} fill style={{ objectFit: 'contain' }} />
+                        <Image src={item.product.image} alt={item.product.name} fill style={{ objectFit: 'contain', padding: '3px' }} />
                       </div>
                     )}
                     <div className={styles.summaryItemName} style={{ flex: 1 }}>

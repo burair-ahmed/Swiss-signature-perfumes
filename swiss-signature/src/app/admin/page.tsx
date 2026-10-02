@@ -470,7 +470,7 @@ export default function AdminDashboardPage() {
                       <tr key={prod.id}>
                         <td>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                            <img src={prod.image} alt={prod.name} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '6px' }} />
+                            <img src={prod.image} alt={prod.name} style={{ width: '40px', height: '40px', objectFit: 'contain', background: '#181818', padding: '2px', borderRadius: '6px' }} />
                             <div>
                               <div style={{ fontWeight: 600, color: '#fff' }}>{prod.name}</div>
                               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{prod.slug}</div>
