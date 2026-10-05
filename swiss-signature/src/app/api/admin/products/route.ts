@@ -48,7 +48,7 @@ export async function POST(request: Request) {
       longDescription: longDescription || description || 'Luxury fragrance notes.',
       notes: notes || { top: ['Citrus'], heart: ['Floral'], base: ['Wood'] },
       rating: 5.0,
-      reviewCount: 147,
+      reviewCount: Math.floor(Math.random() * 60) + 120,
       badge: badge || undefined,
       inStock: inStock !== undefined ? Boolean(inStock) : true,
     };

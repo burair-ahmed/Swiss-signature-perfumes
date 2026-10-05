@@ -107,15 +107,15 @@ export function Footer() {
               <ul className={styles.contactList}>
                 <li className={styles.contactItem}>
                   <Mail size={16} />
-                  <a href="mailto:hello@swisssignature.com">hello@swisssignature.com</a>
+                  <a href="mailto:swisssignatureperfumes@gmail.com">swisssignatureperfumes@gmail.com</a>
                 </li>
                 <li className={styles.contactItem}>
                   <Phone size={16} />
-                  <a href="tel:+41001234567">+41 00 123 45 67</a>
+                  <a href="https://wa.me/923232413377" target="_blank" rel="noopener noreferrer">WhatsApp #: +92 323 241 3377</a>
                 </li>
                 <li className={styles.contactItem}>
                   <MapPin size={16} />
-                  <span>Zurich, Switzerland</span>
+                  <span>Karachi, Pakistan</span>
                 </li>
               </ul>
             </div>

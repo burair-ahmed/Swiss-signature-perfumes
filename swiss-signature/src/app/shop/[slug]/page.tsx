@@ -165,7 +165,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               </div>
               <div className={styles.trustItem}>
                 <Shield size={18} className={styles.trustIcon} />
-                <span>100% Authentic Swiss Quality</span>
+                <span>100% Authentic European Quality</span>
               </div>
               <div className={styles.trustItem}>
                 <RotateCcw size={18} className={styles.trustIcon} />

@@ -97,7 +97,7 @@ export function HeroSection() {
             <div className={styles.miniStatDivider} />
             <div className={styles.miniStat}>
               <span className={styles.miniStatValue}>100%</span>
-              <span className={styles.miniStatLabel}>Swiss Quality</span>
+              <span className={styles.miniStatLabel}>European Quality</span>
             </div>
           </div>
         </div>

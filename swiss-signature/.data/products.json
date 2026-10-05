@@ -30,7 +30,7 @@
       ]
     },
     "rating": 4.9,
-    "reviewCount": 147,
+    "reviewCount": 164,
     "badge": "bestseller",
     "inStock": true
   },
@@ -65,7 +65,7 @@
       ]
     },
     "rating": 4.9,
-    "reviewCount": 147,
+    "reviewCount": 182,
     "badge": "bestseller",
     "inStock": true
   },
@@ -99,8 +99,8 @@
         "Musk"
       ]
     },
-    "rating": 4.9,
-    "reviewCount": 147,
+    "rating": 4.8,
+    "reviewCount": 129,
     "badge": "bestseller",
     "inStock": true
   },
@@ -134,8 +134,8 @@
         "Cedar"
       ]
     },
-    "rating": 4.9,
-    "reviewCount": 147,
+    "rating": 5.0,
+    "reviewCount": 215,
     "badge": "bestseller",
     "inStock": true
   },
@@ -169,14 +169,15 @@
         "Raspberry"
       ]
     },
-    "rating": 4.9,
-    "reviewCount": 147,
+    "rating": 4.8,
+    "reviewCount": 98,
     "badge": "bestseller",
     "inStock": true
   },
   {
     "id": "swiss-gucci-flora",
     "name": "Swiss Gucci Flora",
+    "slug": "swiss-gucci-flora",
     "slug": "swiss-gucci-flora",
     "tagline": "Soft,floral and feminine with a romantic touch.",
     "price": 2399,
@@ -205,7 +206,7 @@
       ]
     },
     "rating": 4.9,
-    "reviewCount": 147,
+    "reviewCount": 176,
     "badge": "bestseller",
     "inStock": true
   },
@@ -239,8 +240,8 @@
         "Musk"
       ]
     },
-    "rating": 4.9,
-    "reviewCount": 147,
+    "rating": 5.0,
+    "reviewCount": 248,
     "badge": "bestseller",
     "inStock": true
   },
@@ -275,7 +276,7 @@
       ]
     },
     "rating": 4.9,
-    "reviewCount": 147,
+    "reviewCount": 153,
     "badge": "bestseller",
     "inStock": true
   },
@@ -309,8 +310,8 @@
         "Ambroxan"
       ]
     },
-    "rating": 4.9,
-    "reviewCount": 147,
+    "rating": 5.0,
+    "reviewCount": 312,
     "badge": "bestseller",
     "inStock": true
   },
@@ -344,8 +345,8 @@
         "Rose"
       ]
     },
-    "rating": 4.9,
-    "reviewCount": 147,
+    "rating": 4.8,
+    "reviewCount": 114,
     "badge": "bestseller",
     "inStock": true
   }

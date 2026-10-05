@@ -40,15 +40,19 @@ export default function ContactPage() {
                 <Mail size={22} className={styles.icon} />
                 <div>
                   <h4 className={styles.infoTitle}>Email</h4>
-                  <p className={styles.infoVal}>hello@swisssignature.com</p>
+                  <p className={styles.infoVal}>swisssignatureperfumes@gmail.com</p>
                 </div>
               </div>
 
               <div className={styles.infoItem}>
                 <Phone size={22} className={styles.icon} />
                 <div>
-                  <h4 className={styles.infoTitle}>Telephone</h4>
-                  <p className={styles.infoVal}>+92 (3) 23 241 3377</p>
+                  <h4 className={styles.infoTitle}>WhatsApp #</h4>
+                  <p className={styles.infoVal}>
+                    <a href="https://wa.me/923232413377" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                      +92 323 241 3377
+                    </a>
+                  </p>
                 </div>
               </div>
 
