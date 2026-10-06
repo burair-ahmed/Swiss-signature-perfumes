@@ -1,6 +1,6 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
@@ -17,6 +17,7 @@
   justify-content: flex-end;
   padding: 1.75rem;
   transition: all 0.4s var(--ease-out);
+  width: 100%;
 }
 
 .card:hover {
@@ -111,12 +112,16 @@
 
 @media (max-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 576px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    height: 280px;
   }
 }

@@ -2,6 +2,7 @@
   background: var(--bg-secondary);
   border-top: 1px solid rgba(255, 255, 255, 0.04);
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  overflow: hidden;
 }
 
 .grid {
@@ -60,8 +61,8 @@
 
 .floatingBadge {
   position: absolute;
-  bottom: -1.5rem;
-  right: -1.5rem;
+  bottom: -1rem;
+  right: -1rem;
   background: rgba(17, 17, 17, 0.9);
   backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
@@ -71,6 +72,7 @@
   align-items: center;
   gap: 0.875rem;
   box-shadow: var(--shadow-gold);
+  max-width: calc(100% - 1rem);
 }
 
 .goldIcon {
@@ -130,5 +132,25 @@
   .floatingBadge {
     bottom: 1rem;
     right: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+}
+
+@media (max-width: 576px) {
+  .floatingBadge {
+    position: static;
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .brandLogoImg {
+    width: 140px;
+    height: 140px;
+  }
+
+  .visualCol {
+    overflow: visible;
   }
 }

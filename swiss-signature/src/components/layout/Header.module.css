@@ -197,19 +197,37 @@
   .menuBtn {
     display: flex;
   }
+}
 
-  .logoText {
-    display: none;
+@media (max-width: 640px) {
+  .logoBrand {
+    font-size: 0.9375rem;
+  }
+  .logoSub {
+    font-size: 0.625rem;
+  }
+  .logoImageWrap {
+    width: 40px;
+    height: 40px;
   }
 }
 
 @media (max-width: 480px) {
+  .header {
+    padding: 0.75rem 0;
+  }
+
   .actions {
     gap: 0;
   }
 
   .actions .iconBtn:nth-child(1),
+  .actions .iconBtn:nth-child(2),
   .actions .iconBtn:nth-child(3) {
     display: none;
+  }
+
+  .logoText {
+    display: flex;
   }
 }

@@ -102,6 +102,10 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-width: 100%;
+  width: 100%;
 }
 
 body {
@@ -110,6 +114,9 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+  position: relative;
   min-height: 100vh;
 }
 
@@ -418,25 +425,25 @@ h1, h2, h3, h4, h5, h6 {
 /* --- Grid Utilities --- */
 .grid-products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   gap: var(--space-xl);
 }
 
 .grid-2 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-xl);
 }
 
 .grid-3 {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-xl);
 }
 
 .grid-4 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-xl);
 }
 
@@ -681,12 +688,12 @@ h1, h2, h3, h4, h5, h6 {
   .grid-4,
   .grid-3,
   .grid-2 {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .grid-products {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.875rem;
   }
 
   .section {
@@ -704,8 +711,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 480px) {
+  :root {
+    --container-padding: 0.875rem;
+  }
+
   .grid-products {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 }
 

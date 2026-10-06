@@ -5,6 +5,8 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Background */
@@ -39,8 +41,8 @@
 }
 
 .orb1 {
-  width: 400px;
-  height: 400px;
+  width: min(400px, 80vw);
+  height: min(400px, 80vw);
   background: radial-gradient(circle, rgba(201, 168, 76, 0.15), transparent);
   top: 10%;
   left: 10%;
@@ -48,8 +50,8 @@
 }
 
 .orb2 {
-  width: 300px;
-  height: 300px;
+  width: min(300px, 60vw);
+  height: min(300px, 60vw);
   background: radial-gradient(circle, rgba(212, 165, 116, 0.12), transparent);
   top: 60%;
   right: 10%;
@@ -342,26 +344,97 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+  }
+
+  .content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
   .frame {
-    inset: 1rem;
+    display: none;
+  }
+
+  .bgOrbs {
+    display: none;
+  }
+
+  .heroCrest {
+    width: 90px;
+    height: 90px;
+  }
+
+  .titleLine {
+    font-size: clamp(2.2rem, 8vw, 3.75rem);
+  }
+
+  .subtitle {
+    margin-bottom: 2rem;
   }
 
   .ctas {
     flex-direction: column;
     gap: 0.75rem;
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2.5rem;
+  }
+
+  .ctas > a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .miniStats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem 1.5rem;
+    width: 100%;
+  }
+
+  .miniStat {
+    flex: 0 1 auto;
+  }
+
+  .miniStatValue {
+    font-size: 1.25rem;
+  }
+
+  .miniStatDivider {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .heroCrest {
+    width: 80px;
+    height: 80px;
+  }
+
+  .overline {
+    font-size: 0.625rem;
+    letter-spacing: 0.15em;
+    padding: 0.35rem 0.875rem;
   }
 
   .miniStats {
     gap: 1rem;
   }
 
-  .miniStatValue {
-    font-size: 1.25rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .content {
-    padding-top: 5rem;
+  .miniStatLabel {
+    font-size: 0.625rem;
   }
 }

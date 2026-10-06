@@ -35,36 +35,37 @@ const categories = [
   },
 ];
 
-// export function CategoryShowcase() {
-//   return (
-//     <section className="section" id="category-showcase">
-//       <div className="container">
-//         <div className="flex-col-center" style={{ marginBottom: '3.5rem' }}>
-//           <span className="text-caption text-gold">Explore By Family</span>
-//           <h2 className="text-display-md" style={{ marginTop: '0.25rem' }}>
-//             Olfactory Universes
-//           </h2>
-//           <div className="gold-line gold-line-center" />
-//         </div>
+export function CategoryShowcase() {
+  return (
+    <section className="section" id="category-showcase">
+      <div className="container">
+        <div className="flex-col-center" style={{ marginBottom: '3.5rem' }}>
+          <span className="text-caption text-gold">Explore By Family</span>
+          <h2 className="text-display-md" style={{ marginTop: '0.25rem' }}>
+            Olfactory Universes
+          </h2>
+          <div className="gold-line gold-line-center" />
+        </div>
 
-//         <div className={styles.grid}>
-//           {categories.map((cat, idx) => (
-//             <Link key={idx} href={cat.href} className={styles.card}>
-//               <div className={styles.cardBackground}>
-//                 <span className={styles.initials}>{cat.initials}</span>
-//               </div>
-//               <div className={styles.cardContent}>
-//                 <span className={styles.tag}>{cat.tag}</span>
-//                 <h3 className={styles.title}>{cat.title}</h3>
-//                 <p className={styles.subtitle}>{cat.subtitle}</p>
-//                 <div className={styles.arrowCircle}>
-//                   <ArrowUpRight size={18} />
-//                 </div>
-//               </div>
-//             </Link>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
+        <div className={styles.grid}>
+          {categories.map((cat, idx) => (
+            <Link key={idx} href={cat.href} className={styles.card}>
+              <div className={styles.cardBackground}>
+                <span className={styles.initials}>{cat.initials}</span>
+              </div>
+              <div className={styles.cardContent}>
+                <span className={styles.tag}>{cat.tag}</span>
+                <h3 className={styles.title}>{cat.title}</h3>
+                <p className={styles.subtitle}>{cat.subtitle}</p>
+                <div className={styles.arrowCircle}>
+                  <ArrowUpRight size={18} />
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+

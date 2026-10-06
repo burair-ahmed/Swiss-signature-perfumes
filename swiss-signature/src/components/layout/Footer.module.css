@@ -39,7 +39,9 @@
 }
 
 .newsletterInput {
-  width: 300px;
+  width: 100%;
+  min-width: 0;
+  max-width: 300px;
   padding: 0.875rem 1.25rem;
   background: var(--bg-tertiary);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -267,14 +269,16 @@
   .newsletterForm {
     flex-direction: column;
     width: 100%;
+    align-items: stretch;
   }
 
   .newsletterInput {
     width: 100%;
+    max-width: 100%;
   }
 
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
   }
 
