@@ -708,6 +708,18 @@ h1, h2, h3, h4, h5, h6 {
   .show-mobile {
     display: block !important;
   }
+
+  .btn {
+    letter-spacing: 0.05em;
+  }
+
+  .btn-lg {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -718,6 +730,16 @@ h1, h2, h3, h4, h5, h6 {
   .grid-products {
     grid-template-columns: 1fr;
     gap: 1.25rem;
+  }
+
+  .btn {
+    letter-spacing: 0.03em;
+  }
+
+  .btn-lg {
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
   }
 }
 

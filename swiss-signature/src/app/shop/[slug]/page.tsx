@@ -147,9 +147,15 @@ export default function ProductDetailPage({ params }: PageProps) {
                 </button>
               </div>
 
-              <button className="btn btn-primary btn-lg" style={{ flex: 1 }} onClick={handleAddToCart} id="add-to-cart-btn">
-                <ShoppingBag size={18} />
-                Add to Cart — PKR {(product.price * quantity).toLocaleString()}
+              <button
+                className={`btn btn-primary btn-lg ${styles.addToCartBtn}`}
+                onClick={handleAddToCart}
+                id="add-to-cart-btn"
+              >
+                <ShoppingBag size={18} className={styles.cartBtnIcon} />
+                <span className={styles.cartBtnText}>
+                  Add to Cart — PKR {(product.price * quantity).toLocaleString()}
+                </span>
               </button>
 
               <button className={styles.wishlistBtn} aria-label="Add to wishlist" onClick={() => toast.success('Added to wishlist')}>
