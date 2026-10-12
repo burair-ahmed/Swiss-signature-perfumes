@@ -26,7 +26,6 @@ export default function CheckoutPage() {
     address: '',
     city: 'Karachi',
     country: 'Pakistan',
-    postalCode: '75500',
     notes: '',
   });
 
@@ -73,7 +72,6 @@ export default function CheckoutPage() {
           address: formData.address,
           city: formData.city,
           country: formData.country,
-          postalCode: formData.postalCode,
         },
         paymentMethod: 'cod',
         notes: formData.notes,
@@ -182,7 +180,7 @@ export default function CheckoutPage() {
 
                 <div className={styles.formRow}>
                   <div className={styles.formGroup}>
-                    <label className="input-label" htmlFor="email">Email Address</label>
+                    <label className="input-label" htmlFor="email">Email Address (Optional)</label>
                     <input
                       type="email"
                       id="email"
@@ -191,7 +189,6 @@ export default function CheckoutPage() {
                       onChange={handleChange}
                       className="input"
                       placeholder="customer@domain.com"
-                      required
                     />
                   </div>
                   <div className={styles.formGroup}>
@@ -250,37 +247,23 @@ export default function CheckoutPage() {
                   />
                 </div>
 
-                <div className={styles.formRow}>
-                  <div className={styles.formGroup}>
-                    <label className="input-label" htmlFor="city">City / Location</label>
-                    <input
-                      type="text"
-                      id="city"
-                      name="city"
-                      value={formData.city}
-                      onChange={handleChange}
-                      className="input"
-                      placeholder="e.g. Karachi, Lahore, Islamabad"
-                      required
-                    />
-                    <span style={{ fontSize: '0.75rem', color: 'var(--gold)', marginTop: '0.25rem', display: 'block' }}>
-                      {formData.city.trim().toLowerCase().includes('karachi') 
-                        ? '✓ Within Karachi: Fixed PKR 250 Courier Shipping' 
-                        : '✓ Outside Karachi: Calculated Regional Courier Rate'}
-                    </span>
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label className="input-label" htmlFor="postalCode">Postal Code</label>
-                    <input
-                      type="text"
-                      id="postalCode"
-                      name="postalCode"
-                      value={formData.postalCode}
-                      onChange={handleChange}
-                      className="input"
-                      required
-                    />
-                  </div>
+                <div className={styles.formGroup}>
+                  <label className="input-label" htmlFor="city">City / Location</label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    className="input"
+                    placeholder="e.g. Karachi, Lahore, Islamabad"
+                    required
+                  />
+                  <span style={{ fontSize: '0.75rem', color: 'var(--gold)', marginTop: '0.25rem', display: 'block' }}>
+                    {formData.city.trim().toLowerCase().includes('karachi') 
+                      ? '✓ Within Karachi: Fixed PKR 250 Courier Shipping' 
+                      : '✓ Outside Karachi: Calculated Regional Courier Rate'}
+                  </span>
                 </div>
 
                 <div className={styles.formGroup}>
