@@ -5,9 +5,9 @@
     "slug": "swiss-coco-mademoiselle",
     "tagline": "Citrusy, bright and refreshing with a juicy touch.",
     "price": 2350,
-    "image": "/products/swiss-gucci-flora.jpg",
+    "image": "/products/swiss-coco.jpeg",
     "images": [
-      "/products/swiss-gucci-flora.jpg"
+      "/products/swiss-coco.jpeg"
     ],
     "category": "women",
     "fragranceFamily": "Patchouli",
@@ -45,9 +45,9 @@
     "slug": "swiss-tobacco-vanille",
     "tagline": "Rich, warm and smooth with a sophisticated depth.",
     "price": 2399,
-    "image": "/products/swiss-sauvage.jpg",
+    "image": "/products/swiss-tobacco.jpeg",
     "images": [
-      "/products/swiss-sauvage.jpg"
+      "/products/swiss-tobacco.jpeg"
     ],
     "category": "unisex",
     "fragranceFamily": "Tobacco",
@@ -83,9 +83,9 @@
     "slug": "swiss-janan",
     "tagline": "Crisp, fresh and juicy with a fruity brightness.",
     "price": 2399,
-    "image": "/products/swiss-creed-aventus.jpg",
+    "image": "/products/j.janan.jpeg",
     "images": [
-      "/products/swiss-creed-aventus.jpg"
+      "/products/j.janan.jpeg"
     ],
     "category": "men",
     "fragranceFamily": "Bergamot",
@@ -122,9 +122,9 @@
     "slug": "swiss-blue-de-chanel",
     "tagline": "Citrus, Mint, Pink Pepper, Grapefruit, Ginger, Jasmine.",
     "price": 2299,
-    "image": "/products/swiss-sauvage.jpg",
+    "image": "/products/blue-de-chanel.jpeg",
     "images": [
-      "/products/swiss-sauvage.jpg"
+      "/products/blue-de-chanel.jpeg"
     ],
     "category": "men",
     "fragranceFamily": "Cedar",
@@ -165,9 +165,9 @@
     "slug": "swiss-tuscan-leather",
     "tagline": "Bold, fruity and inviting with a sweet richness.",
     "price": 2450,
-    "image": "/products/swiss-dunhill-desire-red.jpg",
+    "image": "/products/tom-ford.jpeg",
     "images": [
-      "/products/swiss-dunhill-desire-red.jpg"
+      "/products/tom-ford.jpeg"
     ],
     "category": "unisex",
     "fragranceFamily": "Saffron",
