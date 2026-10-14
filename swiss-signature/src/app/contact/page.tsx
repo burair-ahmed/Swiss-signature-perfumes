@@ -47,7 +47,7 @@ export default function ContactPage() {
               <div className={styles.infoItem}>
                 <Phone size={22} className={styles.icon} />
                 <div>
-                  <h4 className={styles.infoTitle}>WhatsApp #</h4>
+                  <h4 className={styles.infoTitle}>WhatsApp No.</h4>
                   <p className={styles.infoVal}>
                     <a href="https://wa.me/923232413377" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
                       +92 323 241 3377

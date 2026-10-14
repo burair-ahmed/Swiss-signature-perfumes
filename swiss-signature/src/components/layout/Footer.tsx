@@ -111,7 +111,7 @@ export function Footer() {
                 </li>
                 <li className={styles.contactItem}>
                   <Phone size={16} />
-                  <a href="https://wa.me/923232413377" target="_blank" rel="noopener noreferrer">WhatsApp #: +92 323 241 3377</a>
+                  <a href="https://wa.me/923232413377" target="_blank" rel="noopener noreferrer">WhatsApp No. +92 323 241 3377</a>
                 </li>
                 <li className={styles.contactItem}>
                   <MapPin size={16} />
