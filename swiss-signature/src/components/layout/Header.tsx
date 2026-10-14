@@ -10,6 +10,7 @@ import styles from './Header.module.css';
 
 const navLinks = [
   { href: '/', label: 'Home' },
+  { href: '/#olfactory-catalogue', label: 'Top 50 Inspirations' },
   { href: '/shop', label: 'Shop' },
   { href: '/collections', label: 'Collections' },
   { href: '/about', label: 'About' },

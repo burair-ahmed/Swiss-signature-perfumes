@@ -1,5 +1,6 @@
 import { HeroSection } from '@/components/sections/HeroSection';
 import { FeaturedCollection } from '@/components/sections/FeaturedCollection';
+import { FragranceInspirationsCatalogue } from '@/components/sections/FragranceInspirationsCatalogue';
 import { CategoryShowcase } from '@/components/sections/CategoryShowcase';
 import { BrandStory } from '@/components/sections/BrandStory';
 import { StatsBar } from '@/components/sections/StatsBar';
@@ -11,6 +12,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <FeaturedCollection />
+      <FragranceInspirationsCatalogue />
       <CategoryShowcase />
       <BrandStory />
       <StatsBar />
@@ -19,3 +21,4 @@ export default function HomePage() {
     </>
   );
 }
+

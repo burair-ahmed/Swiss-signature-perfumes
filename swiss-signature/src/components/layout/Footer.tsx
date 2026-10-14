@@ -7,6 +7,7 @@ import styles from './Footer.module.css';
 
 const shopLinks = [
   { href: '/shop', label: 'All Fragrances' },
+  { href: '/#olfactory-catalogue', label: 'Top 50 Inspirations' },
   { href: '/shop?category=men', label: 'For Men' },
   { href: '/shop?category=women', label: 'For Women' },
   { href: '/shop?category=unisex', label: 'Unisex' },
